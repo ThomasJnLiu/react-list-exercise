@@ -6,8 +6,9 @@ import Products from "./pages/Products";
 function App() {
   return (
     <div className="App">
+      <Header />
+
       <Switch>
-        <Header />
         <Route path="/products" exact>
           <Products />
         </Route>
