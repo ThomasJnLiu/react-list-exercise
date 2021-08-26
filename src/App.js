@@ -1,6 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Cart from "./pages/Cart";
+import Favourites from "./pages/Favourites";
 import Products from "./pages/Products";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
         <Route path="/products" exact>
           <Products />
         </Route>
-        <Route path="/cart">
-          <Cart />
+        <Route path="/favourites">
+          <Favourites />
         </Route>
       </Switch>
     </div>
