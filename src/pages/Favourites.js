@@ -14,7 +14,16 @@ const Favourites = () => {
       {favourites.length > 0 && (
         <div>
           {favourites.map((char) => (
-            <p key={char.char_id}>{char.name}</p>
+            <p key={char.char_id}>
+              {char.name}{" "}
+              <button
+                onClick={() => {
+                  dispatch(favActions.removeChar({ character: char }));
+                }}
+              >
+                Remove Character
+              </button>
+            </p>
           ))}
         </div>
       )}

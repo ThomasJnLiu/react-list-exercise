@@ -13,6 +13,12 @@ const favouritesSlice = createSlice({
       console.log(action.payload.character);
       state.favouriteCharacters.push(action.payload.character);
     },
+    removeChar(state, action) {
+      console.log(action.payload.character);
+      state.favouriteCharacters = state.favouriteCharacters.filter(
+        (character) => character.char_id !== action.payload.character.char_id
+      );
+    },
   },
 });
 
