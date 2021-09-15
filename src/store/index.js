@@ -10,11 +10,17 @@ const favouritesSlice = createSlice({
       state.counter++;
     },
     addChar(state, action) {
-      console.log(action.payload.character);
-      state.favouriteCharacters.push(action.payload.character);
+      if (
+        state.favouriteCharacters.some(
+          (character) => character.char_id === action.payload.character.char_id
+        )
+      ) {
+        console.log("character already added");
+      } else {
+        state.favouriteCharacters.push(action.payload.character);
+      }
     },
     removeChar(state, action) {
-      console.log(action.payload.character);
       state.favouriteCharacters = state.favouriteCharacters.filter(
         (character) => character.char_id !== action.payload.character.char_id
       );
