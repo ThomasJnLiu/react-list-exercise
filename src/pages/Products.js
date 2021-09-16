@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Search from "../components/Search/Search";
 import SearchResultsList from "../components/SearchResultsList/SearchResultsList";
 
 const Products = () => {
   const [searchResults, setSearchResults] = useState([]);
 
-  const receiveSearchResults = (results) => {
-    console.log("receiving results...");
+  // Prevents Search.js from rerendering and calling the api repeatedly
+  const receiveSearchResults = useCallback((results) => {
     setSearchResults(results.data);
-  };
+  }, []);
 
   return (
     <div>

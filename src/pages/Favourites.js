@@ -24,9 +24,7 @@ const Favourites = () => {
   };
 
   const sortQuotes = (quotes, ascending) => {
-    console.log(quotes);
     return quotes.sort((quoteA, quoteB) => {
-      console.log("comparing " + quoteA.name + " and " + quoteB.name);
       if (ascending) {
         return quoteA.name > quoteB.name ? 1 : -1;
       } else {

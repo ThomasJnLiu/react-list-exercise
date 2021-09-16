@@ -29,7 +29,6 @@ const Search = ({ sendSearchResults }) => {
 `
         )
         .then((results) => {
-          console.log(results);
           sendSearchResults(results);
         });
     } else {
@@ -39,11 +38,10 @@ const Search = ({ sendSearchResults }) => {
 `
         )
         .then((results) => {
-          console.log(results);
           sendSearchResults(results);
         });
     }
-  }, []);
+  }, [query, sendSearchResults]);
 
   return (
     <form onSubmit={submitHandler}>
