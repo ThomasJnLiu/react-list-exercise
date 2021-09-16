@@ -6,6 +6,7 @@ const Products = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const receiveSearchResults = (results) => {
+    console.log("receiving results...");
     setSearchResults(results.data);
   };
 

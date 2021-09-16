@@ -5,6 +5,8 @@ import { useHistory, useLocation } from "react-router-dom";
 
 const Favourites = () => {
   const location = useLocation();
+  console.log(location);
+
   const favourites = useSelector(
     (state) => state.favourites.favouriteCharacters
   );
@@ -22,7 +24,9 @@ const Favourites = () => {
   };
 
   const sortQuotes = (quotes, ascending) => {
+    console.log(quotes);
     return quotes.sort((quoteA, quoteB) => {
+      console.log("comparing " + quoteA.name + " and " + quoteB.name);
       if (ascending) {
         return quoteA.name > quoteB.name ? 1 : -1;
       } else {
@@ -30,10 +34,12 @@ const Favourites = () => {
       }
     });
   };
-  const tempChars = [...favourites];
 
-  const sortedChars = sortQuotes(tempChars, isSortingAscending);
-  console.log(sortedChars);
+  const tempChars = [...favourites];
+  sortQuotes(tempChars, isSortingAscending);
+
+  // const sortedChars = sortQuotes(tempChars, isSortingAscending);
+  // console.log(sortedChars);
 
   return (
     <div>
@@ -45,7 +51,7 @@ const Favourites = () => {
               Sort {isSortingAscending ? "Descending" : "Ascending"}{" "}
             </button>
           </div>
-          {sortedChars.map((char) => (
+          {tempChars.map((char) => (
             <p key={char.char_id}>
               {char.name}{" "}
               <button
