@@ -1,8 +1,10 @@
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory, Link as ReactRouterLink  } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Favourites from "./pages/Favourites";
 import Products from "./pages/Products";
 import { Navigation, Frame } from "@shopify/polaris";
+import enTranslations from "@shopify/polaris/locales/en.json";
+import { AppProvider } from "@shopify/polaris";
 
 function App() {
   const history = useHistory();
@@ -34,8 +36,33 @@ function App() {
     </Navigation>
   );
 
+  // solution from: https://github.com/Shopify/polaris-react/issues/2978
+  const IS_EXTERNAL_LINK_REGEX = /^(?:[a-z][a-z\d+.-]*:|\/\/)/;
+  function Link({children, url = '', external, ref, ...rest}) {
+  // react-router only supports links to pages it can handle itself. It does not
+  // support arbirary links, so anything that is not a path-based link should
+  // use a reglar old `a` tag
+  if (external || IS_EXTERNAL_LINK_REGEX.test(url)) {
+    rest.target = '_blank';
+    rest.rel = 'noopener noreferrer';
+    return (
+      <a href={url} {...rest}>
+        {children}
+      </a>
+    );
+  }
   return (
+    <ReactRouterLink to={url} {...rest}>
+      {children}
+    </ReactRouterLink>
+  );
+}
+
+  return (
+    <AppProvider i18n={enTranslations} linkComponent={Link}>
+
     <div className="App">
+      
       <Frame topBar={topBarComponent} navigation={navigationComponent}>
         <Switch>
           <Route path="/" exact>
@@ -50,6 +77,7 @@ function App() {
         </Switch>
       </Frame>
     </div>
+    </AppProvider>
   );
 }
 

@@ -9,16 +9,12 @@ import { Provider } from "react-redux";
 import store from "./store/index";
 
 import "@shopify/polaris/dist/styles.css";
-import enTranslations from "@shopify/polaris/locales/en.json";
-import { AppProvider } from "@shopify/polaris";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AppProvider i18n={enTranslations} linkComponent={Link}>
           <App />
-        </AppProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
