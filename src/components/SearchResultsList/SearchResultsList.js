@@ -1,17 +1,23 @@
 import React from "react";
 import SearchResultsCard from "../SearchResultsCard/SearchResultsCard";
-
+import { Layout } from "@shopify/polaris";
+import classes from "./SearchResultsList.module.css";
 const SearchResultsList = (props) => {
   return (
-    <div>
+    <Layout>
       {props.searchResults.length > 0 && (
-        <ul>
-          {props.searchResults.map((character) => (
-            <SearchResultsCard character={character} key={character.char_id} />
-          ))}
-        </ul>
+        <Layout.Section>
+          <div className={classes["search-results-container"]}>
+            {props.searchResults.map((character) => (
+              <SearchResultsCard
+                character={character}
+                key={character.char_id}
+              />
+            ))}
+          </div>
+        </Layout.Section>
       )}
-    </div>
+    </Layout>
   );
 };
 
